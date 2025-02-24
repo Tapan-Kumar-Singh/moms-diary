@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block title %}Create User{% endblock %}
+{% block content %}
+<div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <!-- <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> -->
+            <div class="col-lg-7 m-auto">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                    </div>
+                    <form class="user" action="/create-user" method="POST">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="full_name"
+                                    placeholder="Full Name" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" name="user_name"
+                                    placeholder="User Name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control form-control-user" name="password"
+                                placeholder="Password" required>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0 d-flex align-items-center">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox small mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="familyMemberCheck"
+                                            name="is_family_member">
+                                        <label class="custom-control-label" for="familyMemberCheck">Family
+                                            Member</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" id="relationshipField"
+                                    name="relation" placeholder="Relationship" style="display: none;">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0 d-flex align-items-center">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox small">
+                                        <input type="checkbox" class="custom-control-input" id="financerCheck"
+                                            name="is_financer">
+                                        <label class="custom-control-label" for="financerCheck">Financer</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                            Create Account
+                        </button>
+                        <hr>
+                    </form>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

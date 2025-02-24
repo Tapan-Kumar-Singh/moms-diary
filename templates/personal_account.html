@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block title %}Personal Account{% endblock %}
+{% block content %}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">
+        Accounts
+        {% if current_user.is_authenticated %}
+        <span class="h5">({{ current_user.full_name }})</span>
+        {% else %}
+        Admin
+        {% endif %}
+    </h1>
+    <div class="d-flex gap-2"> <!-- Flex container to align buttons -->
+        {% if current_user.is_authenticated and current_user.is_financer %}
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#addMoneyModal" >
+            <i class="fas fa-plus fa-sm text-white-50"></i> Add Money
+        </a>
+        {% endif %}
+        <a href="#" class="d-none ml-1 d-sm-inline-block btn btn-sm btn-success shadow-sm">
+            <i class="fas fa-download fa-sm text-white-50"></i> Refund
+        </a>
+    </div>
+</div>
+
+
+
+<!-- Add Money Modal -->
+<div class="modal fade" id="addMoneyModal" tabindex="-1" aria-labelledby="addMoneyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Money</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ url_for('personal_account_bp.create_personal_account') }}">
+                    <div class="mb-3">
+                        <label for="user_id" class="form-label">User ID:</label>
+                        <input type="number" class="form-control" name="user_id" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="transaction_with" class="form-label">Transaction With:</label>
+                        <select class="form-control" name="transaction_with">
+                            {% for user in users %}
+                            <option value="{{ user.id }}">{{ user.full_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="debited_amount" class="form-label">Transfer:</label>
+                        <input type="text" class="form-control" name="debited_amount">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="credited_amount" class="form-label">Add Mony:</label>
+                        <input type="text" class="form-control" name="credited_amount">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="source" class="form-label">Source:</label>
+                        <input type="text" class="form-control" name="source">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="total_balance" class="form-label">Total Balance:</label>
+                        <input type="text" class="form-control" name="total_balance" required>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

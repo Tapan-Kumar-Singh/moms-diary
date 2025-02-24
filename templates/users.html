@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block title %}Users{% endblock %}
+{% block styletag %}<link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">{% endblock %}
+
+{% block content %}
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">User List</h1>
+    <p class="mb-4">
+        This table displays the list of users. It uses DataTables for sorting, searching, and pagination.
+    </p>
+
+    <!-- DataTables Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Registered Users</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Full Name</th>
+                            <th>Username</th>
+                            <th>Family Member</th>
+                            <th>Relation</th>
+                            <th>Financer</th>
+                            <th>Active</th>
+                            <th>Created At</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Full Name</th>
+                            <th>Username</th>
+                            <th>Family Member</th>
+                            <th>Relation</th>
+                            <th>Financer</th>
+                            <th>Active</th>
+                            <th>Created At</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.full_name }}</td>
+                            <td>{{ user.user_name }}</td>
+                            <td>{{ "Yes" if user.is_family_member else "No" }}</td>
+                            <td>{{ user.relation or "N/A" }}</td>
+                            <td>{{ "Yes" if user.is_financer else "No" }}</td>
+                            <td>{{ "Active" if user.is_active else "Inactive" }}</td>
+                            <td>{{ user.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script_block %}
+<script src="{{ url_for('static', filename='vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/demo/datatables-demo.js') }}"></script>
+
+
+{% endblock %}
