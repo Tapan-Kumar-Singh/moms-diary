@@ -1,3 +1,25 @@
+## MOMS DIARY
+Mom's Diary is a Python-based web application built with Flask. It helps manage household expenses efficiently with an easy-to-use interface.
+
+##### Feature of Mom's diary
+- Designed to track and manage home expenses on a delayed basis.
+- Simple and intuitive UI for effortless expense management.
+
+##### Functionlity of Mom's diary:
+ ```🚀 Updates coming soon... ```
+
+#### 01. Installation
+- Ensure that Python 3 is installed on your device.
+
+##### Steps to install application
+###### Clone the Repository 
+Run the following command to clone the project from GitHub:
+
+ ```bash 
+    git clone https://github.com/Tapan-Kumar-Singh/moms-diary.git
+```
+- Install the necessery packages from requirements.txt
+
 #### 01. Create database:
 ```bash
 flask db init
